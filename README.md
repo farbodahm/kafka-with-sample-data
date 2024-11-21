@@ -43,49 +43,13 @@ This setup includes the following components:
 3. Access Kafka Control Center:
     - Open your browser and go to `http://localhost:9021`
     - Start the connector you want. This compose  will create 3 connectors for you:
-      - User sample data with Json schema
-      - User sample data with Avro schema
-      - User sample data with Protobuf schema
+      - User sample data with **Json** schema
+      - User sample data with **Avro** schema
+      - User sample data with **Protobuf** schema
        ![AvailableConnectors](./assets/connectors.png)
 4. View and manage the generated data:
     - Data will be generated on predefined topics by the DataGen connector.
     - Check the topics in Kafka Control Center or using Kafka CLI tools.
-
----
-
-## Components Overview
-
-### Kafka Broker
-
-- **Port**: `9092`
-- Central messaging system.
-
-### Schema Registry
-
-- **Port**: `8081`
-- Used for managing and storing schemas.
-
-### Kafka Connect
-
-- **Port**: `8083`
-- Includes the `DataGen` connector to generate sample data.
-
-### Kafka Control Center
-
-- **Port**: `9021`
-- GUI for managing and monitoring Kafka clusters.
-
----
-
-## Pre-configured Topics and Sample Data
-
-The default `DataGen` connector generates sample data for the following topics:
-
-1. **JSON Topic**: Sample User data in JSON format.
-2. **Avro Topic**: Sample User data in Avro format.
-3. **Protobuf Topic**: Sample User data in Protobuf format.
-
-These topics are pre-configured in the Kafka Connect setup.
 
 An example of generated data looks like:
 ```json
@@ -96,6 +60,7 @@ An example of generated data looks like:
   "gender": "OTHER"
 }
 ```
+
 ---
 
 ## Customization
