@@ -95,10 +95,12 @@ services:
         curl -X POST -H "Content-Type: application/json" --data @/home/appuser/config/users-json.json http://localhost:8083/connectors
         curl -X POST -H "Content-Type: application/json" --data @/home/appuser/config/users-avro.json http://localhost:8083/connectors
         curl -X POST -H "Content-Type: application/json" --data @/home/appuser/config/users-protobuf.json http://localhost:8083/connectors
+        curl -X POST -H "Content-Type: application/json" --data @/home/appuser/config/nested-orders-json.json http://localhost:8083/connectors
         echo "Pausing Connectors to start manually"
         curl -X PUT http://localhost:8083/connectors/datagen_json_users/pause
         curl -X PUT http://localhost:8083/connectors/datagen_avro_users/pause
         curl -X PUT http://localhost:8083/connectors/datagen_protobuf_users/pause
+        curl -X PUT http://localhost:8083/connectors/datagen_json_nested_orders/pause
         echo "Connect Setup Complete"
         wait
 

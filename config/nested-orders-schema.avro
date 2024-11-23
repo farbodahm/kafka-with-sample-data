@@ -1,0 +1,142 @@
+{
+  "namespace": "ksql",
+  "name": "orders",
+  "type": "record",
+  "fields": [
+    {
+      "name": "user_id",
+      "type": {
+        "type": "string",
+        "arg.properties": {
+          "regex": "User_[1-9]"
+        }
+      }
+    },
+    {
+      "name": "order_id",
+      "type": {
+        "type": "string",
+        "arg.properties": {
+          "regex": "Order_[1-9][0-9]*"
+        }
+      }
+    },
+    {
+      "name": "shipping_address",
+      "type": {
+        "type": "record",
+        "name": "ShippingAddress",
+        "fields": [
+          {
+            "name": "city",
+            "type": {
+              "type": "string",
+              "arg.properties": {
+                "regex": "City_[1-9]{1,2}"
+              }
+            }
+          },
+          {
+            "name": "state",
+            "type": {
+              "type": "string",
+              "arg.properties": {
+                "regex": "State_[1-9]{1,2}"
+              }
+            }
+          },
+          {
+            "name": "zipcode",
+            "type": {
+              "type": "long",
+              "arg.properties": {
+                "range": {
+                  "min": 10000,
+                  "max": 99999
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "items",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "Item",
+          "fields": [
+            {
+              "name": "item_id",
+              "type": {
+                "type": "string",
+                "arg.properties": {
+                  "regex": "Item_[1-9][0-9]{1,2}"
+                }
+              }
+            },
+            {
+              "name": "item_name",
+              "type": {
+                "type": "string",
+                "arg.properties": {
+                  "regex": "[a-zA-Z0-9 ]+"
+                }
+              }
+            },
+            {
+              "name": "quantity",
+              "type": {
+                "type": "long",
+                "arg.properties": {
+                  "range": {
+                    "min": 10,
+                    "max": 5000
+                  }
+                }
+              }
+            },
+            {
+              "name": "price",
+              "type": {
+                "type": "float",
+                "arg.properties": {
+                  "min": 0
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "order_timestamp",
+      "type": {
+        "type": "long",
+        "format_as_time": "unix_long",
+        "arg.properties": {
+          "iteration": {
+            "start": 315558000000,
+            "step": 1000
+          }
+        }
+      }
+    },
+    {
+      "name": "order_status",
+      "type": {
+        "type": "string",
+        "arg.properties": {
+          "options": [
+            "Pending",
+            "Shipped",
+            "Delivered",
+            "Canceled"
+          ]
+        }
+      }
+    }
+  ]
+}

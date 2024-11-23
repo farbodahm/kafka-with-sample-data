@@ -46,18 +46,55 @@ This setup includes the following components:
       - User sample data with **Json** schema
       - User sample data with **Avro** schema
       - User sample data with **Protobuf** schema
-       ![AvailableConnectors](./assets/connectors.png)
+      - **Nested** Order sample data with **Json** schema
+        - `Order` topic is joinable with `User` topic on `user_id` field.
+      ![AvailableConnectors](./assets/connectors.png)
 4. View and manage the generated data:
     - Data will be generated on predefined topics by the DataGen connector.
     - Check the topics in Kafka Control Center or using Kafka CLI tools.
 
-An example of generated data looks like:
+- Example User data:
 ```json
 {
   "registertime": "1491454553823",
   "userid": "User_6",
   "regionid": "Region_1",
   "gender": "OTHER"
+}
+```
+
+- Example Order data:
+```json
+{
+  "user_id": "User_6",
+  "order_id": "Order_318737",
+  "shipping_address": {
+    "city": "City_15",
+    "state": "State_3",
+    "zipcode": 12130
+  },
+  "items": [
+    {
+      "item_id": "Item_548",
+      "item_name": "  9o11",
+      "quantity": 2072,
+      "price": 0.93797684
+    },
+    {
+      "item_id": "Item_791",
+      "item_name": "I",
+      "quantity": 1864,
+      "price": 0.88732815
+    },
+    {
+      "item_id": "Item_455",
+      "item_name": "9F ",
+      "quantity": 4930,
+      "price": 0.60063416
+    }
+  ],
+  "order_timestamp": 315558009000,
+  "order_status": "Shipped"
 }
 ```
 
