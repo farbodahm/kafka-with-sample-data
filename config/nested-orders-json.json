@@ -1,0 +1,15 @@
+{
+    "name": "datagen_json_nested_orders",
+    "config": {
+        "connector.class": "io.confluent.kafka.connect.datagen.DatagenConnector",
+        "kafka.topic": "nested-orders-json-v1",
+        "schema.filename": "./config/nested-orders-schema.avro",
+        "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+        "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+        "value.converter.schemas.enable": "false",
+        "max.interval": 1000,
+        "iterations": 10000000,
+        "tasks.max": "1",
+        "schema.keyfield": "order_id"
+    }
+}
